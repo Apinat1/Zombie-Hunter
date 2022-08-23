@@ -8,8 +8,7 @@ public class Zombie : MonoBehaviour
     NavMeshAgent agent;
     GameObject player;
     Animator anim;
-
-    // Start is called before the first frame update
+    public float zombieHP = 100;
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
@@ -17,12 +16,11 @@ public class Zombie : MonoBehaviour
         anim = GetComponent<Animator>();
     }
 
-    // Update is called once per frame
     void Update()
     {
         float dist = Vector3.Distance(transform.position, player.transform.position);
         anim.SetFloat("distance", dist);
-        if ( dist < 2f) agent.speed = 0;
+        if (dist < 2.5f) agent.speed = 0;
         else agent.SetDestination(player.transform.position);
     }
 }
